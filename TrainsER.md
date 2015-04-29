@@ -20,15 +20,15 @@ This application is targeted at providing a simple reminder system for user's to
 
 | Relationship | Entities | Description |
 |-----|-----|--------|
-| Serviced By | $\leftarrow$Conductor, **Train** |
-| Follows | **$\leftarrow$Train**, $\leftarrow$Schedule |
-| Is(engine) | **$\leftarrow$Engine**, Engine Type |
-| Leads | **$\leftarrow$Train**, $\leftarrow$Engine |
-| Pulls | $\leftarrow$Coach, Train | 
+| Serviced By | ←Conductor, **Train** |
+| Follows | **←Train**, ←Schedule |
+| Is(engine) | **←$Engine**, Engine Type |
+| Leads | **←Train**, ←$Engine |
+| Pulls | ←Coach, Train | 
 | Maps | **Schedule**, **Station** | 
-| Staffed By | $\leftarrow$Engineer, **Engine** |
-| Stored At (1) | $\leftarrow$Engine, Train Yard | 
-| Stored At (2) | $\leftarrow$Coach, Train Yard | 
+| Staffed By | ←Engineer, **Engine** |
+| Stored At (1) | ←Engine, Train Yard | 
+| Stored At (2) | ←Coach, Train Yard | 
 | Links To | Station, Station [previous, next] | 
 
 
