@@ -2,7 +2,7 @@
 **John Ailor, Stephen Braccia**
 
 #### High Level Description
-This application is targeted at providing a simple reminder system for user's to sign-in and make "reservations" for their scheduale. These reservation's can be to help keep them on track, or keep them notified of pending trains. The primary focus of the application will be on the trains and train schedules. The application is able to track what type of coach is being used, and who is scheduled to operate the vehicle along the routes. 
+This application is designed to track the operation and scheduling of Train entities, and is desgined for use by a Train Company (e.g. Amtrak, Septa, Patco). The primary focus of the application will be on the trains and train schedules. The application is able to track what type of coach is being used, and who is scheduled to operate the vehicle along the routes.
 
 #### Entities
 
@@ -20,24 +20,24 @@ This application is targeted at providing a simple reminder system for user's to
 
 | Relationship | Entities | Description |
 |-----|-----|--------|
-| Serviced By | ←Conductor, **Train** | 
-| Follows | **←Train**, ←Schedule |
-| Is(engine) | **←$Engine**, Engine Type |
-| Leads | **←Train**, ←$Engine |
-| Pulls | ←Coach, Train | 
-| Maps | **Schedule**, **Station** | 
-| Staffed By | ←Engineer, **Engine** |
-| Stored At (1) | ←Engine, Train Yard | 
-| Stored At (2) | ←Coach, Train Yard | 
-| Links To | Station, Station [previous, next] | 
+| Serviced By | ←Conductor, **Train** | Every Train must be serviced by at least 1 conductor, and each conductor must Service at most 1 train |
+| Follows | **←Train**, ←Schedule | Every schedule must have 1 train, and every train needs at least 1 schedule | 
+| Is(engine) | **←Engine**, Engine Type | Every Engine Type must have at least 1 engine, and every engine must be of only 1 engine type |
+| Leads | **←Train**, ←Engine | Every Train needs to have at least 1 engine, but an engine can only be associated with a single train |
+| Pulls | ←Coach, Train | Every Coach must be used on at most 1 Train | 
+| Maps | **Schedule**, **Station** | Every Schedule needs at least 1 station, and every station must be utilized on at least 1 Schedule |
+| Staffed By | ←Engineer, **Engine** | Every Engine needs at least 1 Engineer, and every conductor needs to run at most 1 Engine |
+| Stored At (1) | ←Engine, Train Yard | Every Engine needs to be stored at at most 1 train yard |
+| Stored At (2) | ←Coach, Train Yard | Every Coach needs to be stored at most 1 Train Yard |  
+| Links To | Station, Station [previous, next] | Stations are linked together, but a station does not need to have any links | 
 
-
-
+*Key Constraints Participation Restraints are indicated by arrow: ←
+*\*Participation Restraints  are indicated by **bold lettering**
 
 #### Data Acquisition 
-Data will be acquired through a combination of scraping from Amtrak and Septa websites (APIs are available for some resources, but data is available via web interfaces). Schedule information is available via API, however train yard location, and station locations may only be available via web interfaces. General data on trains and coaches can be acquired through various online resources for train enthusiasts. Passenger/Conductor information will be input to the system by the user's, however without a strong user base, this information will be fabricated by the developers. 
+Data will be acquired through a combination of scraping from Amtrak and Septa websites (APIs are available for some resources, but data is available via web interfaces). Schedule information is available via API, however train yard location, and station locations may only be available via web interfaces. General data on trains and coaches can be acquired through various online resources for train enthusiasts. Engineer/Conductor information will be input to the system by the user's.
 
 #### User Interaction
-User's will interact with the application by making reservation's for a train, and by fetching information regarding the schedule's in web interface programmed in Java. The user will be responsible for managing their own reservation, however all other information regarding their train will be populated for them automatically. 
+User's will interact with the application by querying for relevant information, and adjusting or adding new information via a web interface. 
 
 
