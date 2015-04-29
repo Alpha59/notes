@@ -8,19 +8,19 @@ This application is targeted at providing a simple reminder system for user's to
 
 | Entity | Rows | Description |
 |-----|-----|--------|
-| Conductor | *Id*, dob, name, location | 
-| Train | *Id*, name |
-| Schedule | *Id*, Start, End | 
-| Engine | *Id*, Company, Color, Pulling Power |
-| Coach | *Id*, Company, Build Year |
-| Station | *Id*, Location | 
-| Engine Type | *Type*, Fuel Type | 
-| Engineer | *Id*, dob, name, location | 
-| Train Yard | *Id*, Location, Capacity | 
+| Conductor | *Id*, dob, name, location | The Train conductor is a member of personnel who is in charge of the entire a train including passengers, schedule, ect.|
+| Train | *Id*, name | The train is the combination of engines and coaches that follows a schedule |
+| Schedule | *Id*, Start, End | A schedule is the time that a train runs along a given map |
+| Engine | *Id*, Company, Color, Pulling Power | Engine is the pulling force of the train |
+| Coach | *Id*, Company, Build Year | Coach is the carrier cars that are being pulled by an engine and compose the rest of the train. 
+| Station | *Id*, Location | A Station is a stop or location that a train stops on in order to load or unload passengers or cargo. 
+| Engine Type | *Type*, Fuel Type | The engine type, much like a car model, is the manufacturers and production model of an engine | 
+| Engineer | *Id*, dob, name, location | The Engineer is the personnel in charge of operating the train's engine. |
+| Train Yard | *Id*, Location, Capacity | A train yard is a storage facility for trains and engines. Train yards also provide maintenance tasks. | 
 
 | Relationship | Entities | Description |
 |-----|-----|--------|
-| Serviced By | ←Conductor, **Train** |
+| Serviced By | ←Conductor, **Train** | 
 | Follows | **←Train**, ←Schedule |
 | Is(engine) | **←$Engine**, Engine Type |
 | Leads | **←Train**, ←$Engine |
