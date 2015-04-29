@@ -26,7 +26,7 @@ This application is designed to track the operation and scheduling of Train enti
 | Leads | **←Train**, ←Engine | Every Train needs to have at least 1 engine, but an engine can only be associated with a single train |
 | Pulls | ←Coach, Train | Every Coach must be used on at most 1 Train | 
 | Maps | **Schedule**, **Station** | Every Schedule needs at least 1 station, and every station must be utilized on at least 1 Schedule |
-| Staffed By | ←Engineer, **Engine** | Every Engine needs at least 1 Engineer, and every conductor needs to run at most 1 Engine |
+| Staffed By | ←Engineer, **Engine** | Every Engine needs at least 1 Engineer, and every Engineer needs to run at most 1 Engine |
 | Stored At (1) | ←Engine, Train Yard | Every Engine needs to be stored at at most 1 train yard |
 | Stored At (2) | ←Coach, Train Yard | Every Coach needs to be stored at most 1 Train Yard |  
 | Links To | Station, Station [previous, next] | Stations are linked together, but a station does not need to have any links | 
@@ -92,7 +92,53 @@ User's will interact with the application by querying for relevant information, 
 	)
 
 #### Relationship 
-	CREATE TABLE Conductors(
-			id integer PRIMARY KEY 
-			,FOREIGN KEY (id) REFERENCES 
+	CREATE TABLE Serviced_By(
+		id integer PRIMARY KEY 
+		,cId FOREIGN KEY REFERENCES Conductor (id) NOT NULL
+		,tId FOREIGN KEY REFERENCES Train (id) UNIQUE
+	)
+	CREATE TABLE Follows(
+		id integer PRIMARY KEY 
+		,sId FOREIGN KEY REFERENCES Schedule (id) NOT NULL
+		,tId FOREIGN KEY REFERENCES Train (id) UNIQUE NOT NULL
+	)
+	CREATE TABLE Is_engine(
+		id integer PRIMARY KEY 
+		,eId FOREIGN KEY REFERENCES Engine (id) NOT NULL
+		,tId FOREIGN KEY REFERENCES Engine_Type (id) NOT NULL UNIQUE
+	)
+	CREATE TABLE Leads(
+		id integer PRIMARY KEY 
+		,eId FOREIGN KEY REFERENCES Engine (id) NOT NULL
+		,tId FOREIGN KEY REFERENCES Train (id) UNIQUE
+	)
+	CREATE TABLE Pulls(
+		id integer PRIMARY KEY 
+		,cId FOREIGN KEY REFERENCES Coach (id)
+		,tId FOREIGN KEY REFERENCES Train (id) UNIQUE
+	)
+	CREATE TABLE Maps(
+		id integer PRIMARY KEY 
+		,scId FOREIGN KEY REFERENCES Schedule (id) NOT NULL
+		,stId FOREIGN KEY REFERENCES Station (id) NOT NULL
+	)
+	CREATE TABLE Staffed_By(
+		id integer PRIMARY KEY 
+		,erId FOREIGN KEY REFERENCES Engineer (id) UNIQUE NOT NULL
+		,eId FOREIGN KEY REFERENCES Engine (id) NOT NULL
+	)
+	CREATE TABLE Stored_At_1(
+		id integer PRIMARY KEY 
+		,eId FOREIGN KEY REFERENCES Engine (id) UNIQUE
+		,tId FOREIGN KEY REFERENCES Train_Yard (id) NOT NULL
+	)
+	CREATE TABLE Stored_At_2(
+		id integer PRIMARY KEY 
+		,cId FOREIGN KEY REFERENCES Coach (id) UNIQUE
+		,tId FOREIGN KEY REFERENCES Train_Yard (id) NOT NULL
+	)
+	CREATE TABLE Links_To(
+		id integer PRIMARY KEY 
+		,previous FOREIGN KEY REFERENCES Station (id)
+		,station FOREIGN KEY REFERENCES Station (id)
 	)
