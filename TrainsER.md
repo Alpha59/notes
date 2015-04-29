@@ -18,6 +18,8 @@ This application is designed to track the operation and scheduling of Train enti
 | Engineer | *Id*, dob, name, location | The Engineer is the personnel in charge of operating the train's engine. |
 | Train Yard | *Id*, Location, Capacity | A train yard is a storage facility for trains and engines. Train yards also provide maintenance tasks. | 
 
+
+
 | Relationship | Entities | Description |
 |-----|-----|--------|
 | Serviced By | ←Conductor, **Train** | Every Train must be serviced by at least 1 conductor, and each conductor must Service at most 1 train |
@@ -91,7 +93,7 @@ User's will interact with the application by querying for relevant information, 
 			,capacity
 	)
 
-#### Relationship 
+#### Relationships
 	CREATE TABLE Serviced_By(
 		id integer PRIMARY KEY 
 		,cId FOREIGN KEY REFERENCES Conductor (id) NOT NULL
