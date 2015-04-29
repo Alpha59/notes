@@ -40,4 +40,59 @@ Data will be acquired through a combination of scraping from Amtrak and Septa we
 #### User Interaction
 User's will interact with the application by querying for relevant information, and adjusting or adding new information via a web interface. 
 
+### Table Creation
 
+#### Entities 
+
+	CREATE TABLE Conductors(
+			id integer PRIMARY KEY 
+			,dob
+			,name
+			,location
+	)
+	CREATE TABLE Train(
+			id integer PRIMARY KEY 
+			,name NOT NULL
+	)
+	CREATE TABLE Schedule(
+			id integer PRIMARY KEY 
+			,start NOT NULL
+			,end NOT NULL
+	)
+	CREATE TABLE Engine(
+			id integer PRIMARY KEY 
+			,company NOT NULL
+			,color NOT NULL
+			,pulling_power NOT NULL
+	)
+	CREATE TABLE Coach(
+			id integer PRIMARY KEY 
+			,company NOT NULL
+			,build_year NOT NULL
+	)
+	CREATE TABLE Station(
+			id integer PRIMARY KEY 
+			,location
+	)
+	CREATE TABLE Engine_type(
+			id integer PRIMARY KEY 
+			,type
+			,fuel_type
+	)
+	CREATE TABLE Engineer(
+			id integer PRIMARY KEY 
+			,dob
+			,name
+			,location
+	)
+	CREATE TABLE Train_Yard(
+			id integer PRIMARY KEY 
+			,location
+			,capacity
+	)
+
+#### Relationship 
+	CREATE TABLE Conductors(
+			id integer PRIMARY KEY 
+			,FOREIGN KEY (id) REFERENCES 
+	)
