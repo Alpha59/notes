@@ -18,7 +18,7 @@ This application is designed to track the operation and scheduling of Train enti
 | Engineer | *Id*, dob, name, location | The Engineer is the personnel in charge of operating the train's engine. |
 | Train Yard | *Id*, Location, Capacity | A train yard is a storage facility for trains and engines. Train yards also provide maintenance tasks. | 
 
-
+---
 
 | Relationship | Entities | Description |
 |-----|-----|--------|
