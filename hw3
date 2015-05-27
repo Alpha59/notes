@@ -1,0 +1,79 @@
+
+# Homework 3: Normalization, indexing
+**CS 461** 
+**John Ailor** - Jra59@drexel.edu
+
+### Problem 1
+Consider relation R (ABCD) together with the following set of FDs: $AB\rightarrow C; D \rightarrow B; AC \rightarrow D$. Answer each question below and carefully justify your answer. 
+
+A. List all candidate keys of relation R.
+>* ABCD
+* ABC
+
+
+B. Does $AD \rightarrow B$ follow from the set of FDs $AB\rightarrow C; D \rightarrow B; AC \rightarrow D$ ?
+>Yes, you are able to determine the value of B from knowing A and D since you can determine the value of B simply by knowing the value of D. 
+
+C. Is relation R in 3NF? is relation R in BCNF? Justify your answer.
+>Yes, the relationship is in 3NF since every key can be directly deduced from the superkey.
+
+>No, R is not in BCNF because every key in the set is a superkey of R. 
+
+D. Decompose R into BCNF, underlying the key for each relation in the decomposition. Show the projected dependencies for each relation. Is this decomposition dependency-preserving?
+
+>$AB\rightarrow C; D \rightarrow B; AC \rightarrow D$, $ABCD$
+>$AB\rightarrow C; AC \rightarrow DB$, $ABC$
+
+
+### Problem 2
+A. Consider relation R (WXYZ) with the following set of FDs $Y \rightarrow Z; YZ \rightarrow W; WX \rightarrow Y; XZ \rightarrow W$. Give a decomposition of R into BCNF, underlying the key for each relation in the decomposition. Show the projected dependencies for each relation. Is this decomposition dependency-preserving?
+
+>$Y \rightarrow Z; YZ \rightarrow W; WX \rightarrow Y; XZ \rightarrow W$, $WXYZ$
+>$YZ \rightarrow W; WX \rightarrow Y; XZ \rightarrow W$, $WXYZ$
+
+
+>Yes, this decomposition is dependency-preserving.
+
+
+B. Consider the relation R (ABCD) with the following set of FDs: $C\rightarrow B; A\rightarrow B; CD\rightarrow A; BCD\rightarrow A$. Decompose R into 3NF, underlying the key for each relation in the decomposition. Show the projected dependencies for each relation. 
+
+>
+
+### Problem 3
+Consider a file in which there are 10,000 records, each record is 1KB in size. Further, suppose that the size of block 64KB. 
+
+
+A. How many passes will be required to sort this file using two-way external merge-sort? What is the total I/O cost of sorting this file?
+
+
+B. Suppose now that we have 320KB of memory at our disposal. How many passes will be required to sort this file using generalized external merge-sort? What is the total I/O cost of sorting this file?
+
+### Problem 4
+Consider the following relation:
+```
+Sailors (
+	id: integer; # 0-100,000
+	name: string;
+	rating:integer; #0-10
+	age: integer; #20-80
+);
+```
+You can assume uniform distributions of age and rating values, that is all values of age and rating are equally likely and are uncorrelated. The Sailors relation is stored on disk as a sorted file, sorted in id. There are 100,000 records in this file, 1,000 per disk page, for a total of 100 disk pages. Suppose that the following access paths are avaliable and that all indexes are unclustered. 
+* No index
+* Hash index on *id*
+* Hash index on *age*
+* Hash index on *age, rating*
+* Hash index on *name, age, rating*
+* B+-tree index on *name, age, rating*
+* B+-tree index on *age, rating*
+
+For each query below, decide which access path you will use to speed up the query, and briefly explain why. 
+
+
+A. Print name, age and rating of all sailors.
+
+B. Print name, age and rating of the sailor with id=123
+
+C. Count the number of sailors with rating = 5
+
+D. Print name, age, and rating of sailors with rating < 5 and age <5
