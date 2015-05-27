@@ -81,9 +81,27 @@ For each query below, decide which access path you will use to speed up the quer
 
 
 A. Print name, age and rating of all sailors.
+```sql
+SELECT name, age, rating FROM sailors; 
+```
+No query method will speed this up since it is querying for all results- therefore using the hash index on *id* is the most likely to be used and will output the results based on the order they were entered (most likely). 
 
 B. Print name, age and rating of the sailor with id=123
+```sql
+SELECT name, age, rating FROM sailor WHERE id=123
+```
+Using the has on index will return results the fastest since this is a simple index lookup with only 1 criterion. 
 
 C. Count the number of sailors with rating = 5
+```sql
+SELECT COUNT(rating) FROM sailors WHERE rating=5
+```
+The hash on *rating, age* will most likely return the fastest results since you will be able to quickly find the ratings of 5 and there are a low enough number of possible ages to make the hash indexes possible for ratings of 5 to be manageable. 
 
-D. Print name, age, and rating of sailors with rating < 5 and age <5
+D. Print name, age, and rating of sailors with rating < 5 and age < 40
+```sql
+SELECT name, age, rating FROM sailors 
+WHERE rating < 5 
+AND age < 40
+```
+The B+-tree on *age, rating* will return results the fastest since you will be able to quickly find results that match that criteria, and then be able to traverse them in order without needing to re-query. 
