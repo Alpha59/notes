@@ -47,13 +47,15 @@ Consider a file in which there are 10,000 records, each record is 1KB in size. F
 A. How many passes will be required to sort this file using two-way external merge-sort? What is the total I/O cost of sorting this file?
 
 >$k = log_{2}(N/B)+1$ passes
->>=8.2 passes
+>>=8.2 passes 
+>
 >$2N (log_{2}(N/B)+1)$ I/O
 >>157*2*7.2 = 2,604
 
 B. Suppose now that we have 320KB of memory at our disposal. How many passes will be required to sort this file using generalized external merge-sort? What is the total I/O cost of sorting this file?
 >$k = log_{2}(N/B)+1$ passes
 >>=6
+>
 >$2N (log_{2}(N/B)+1)$ I/O
 >>31.25*2*6 = 375
 
@@ -90,13 +92,13 @@ B. Print name, age and rating of the sailor with id=123
 ```sql
 SELECT name, age, rating FROM sailor WHERE id=123
 ```
-Using the has on index will return results the fastest since this is a simple index lookup with only 1 criterion. 
+>Using the has on index will return results the fastest since this is a simple index lookup with only 1 criterion. 
 
 C. Count the number of sailors with rating = 5
 ```sql
 SELECT COUNT(rating) FROM sailors WHERE rating=5
 ```
-The hash on *rating, age* will most likely return the fastest results since you will be able to quickly find the ratings of 5 and there are a low enough number of possible ages to make the hash indexes possible for ratings of 5 to be manageable. 
+>The hash on *rating, age* will most likely return the fastest results since you will be able to quickly find the ratings of 5 and there are a low enough number of possible ages to make the hash indexes possible for ratings of 5 to be manageable. 
 
 D. Print name, age, and rating of sailors with rating < 5 and age < 40
 ```sql
@@ -104,4 +106,4 @@ SELECT name, age, rating FROM sailors
 WHERE rating < 5 
 AND age < 40
 ```
-The B+-tree on *age, rating* will return results the fastest since you will be able to quickly find results that match that criteria, and then be able to traverse them in order without needing to re-query. 
+>The B+-tree on *age, rating* will return results the fastest since you will be able to quickly find results that match that criteria, and then be able to traverse them in order without needing to re-query. 
