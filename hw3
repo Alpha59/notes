@@ -21,15 +21,15 @@ C. Is relation R in 3NF? is relation R in BCNF? Justify your answer.
 
 D. Decompose R into BCNF, underlying the key for each relation in the decomposition. Show the projected dependencies for each relation. Is this decomposition dependency-preserving?
 
->$AB\rightarrow C; D \rightarrow B; AC \rightarrow D$, $ABCD$
->$AB\rightarrow C; AC \rightarrow DB$, $ABC$
+>$AB\rightarrow C; D \rightarrow B; AC \rightarrow D$, $(ABCD)$
+>$AB\rightarrow C; AC \rightarrow DB$, $(ABC)$
 
 
 ### Problem 2
 A. Consider relation R (WXYZ) with the following set of FDs $Y \rightarrow Z; YZ \rightarrow W; WX \rightarrow Y; XZ \rightarrow W$. Give a decomposition of R into BCNF, underlying the key for each relation in the decomposition. Show the projected dependencies for each relation. Is this decomposition dependency-preserving?
 
->$Y \rightarrow Z; YZ \rightarrow W; WX \rightarrow Y; XZ \rightarrow W$, $WXYZ$
->$YZ \rightarrow W; WX \rightarrow Y; XZ \rightarrow W$, $WXYZ$
+>$Y \rightarrow Z; YZ \rightarrow W; WX \rightarrow Y; XZ \rightarrow W$, $(WXYZ)$
+>$YZ \rightarrow W; WX \rightarrow Y; XZ \rightarrow W$, $(WXYZ)$
 
 
 >Yes, this decomposition is dependency-preserving.
@@ -37,7 +37,8 @@ A. Consider relation R (WXYZ) with the following set of FDs $Y \rightarrow Z; YZ
 
 B. Consider the relation R (ABCD) with the following set of FDs: $C\rightarrow B; A\rightarrow B; CD\rightarrow A; BCD\rightarrow A$. Decompose R into 3NF, underlying the key for each relation in the decomposition. Show the projected dependencies for each relation. 
 
->
+>$C\rightarrow B; A\rightarrow B; CD\rightarrow A; BCD\rightarrow A$, $(ABCD)$
+>$BCD\rightarrow A$, $(BCD)$
 
 ### Problem 3
 Consider a file in which there are 10,000 records, each record is 1KB in size. Further, suppose that the size of block 64KB. 
@@ -45,8 +46,17 @@ Consider a file in which there are 10,000 records, each record is 1KB in size. F
 
 A. How many passes will be required to sort this file using two-way external merge-sort? What is the total I/O cost of sorting this file?
 
+>$k = log_{2}(N/B)+1$ passes
+>>=8.2 passes
+>$2N (log_{2}(N/B)+1)$ I/O
+>>157*2*7.2 = 2,604
 
 B. Suppose now that we have 320KB of memory at our disposal. How many passes will be required to sort this file using generalized external merge-sort? What is the total I/O cost of sorting this file?
+>$k = log_{2}(N/B)+1$ passes
+>>=6
+>$2N (log_{2}(N/B)+1)$ I/O
+>>31.25*2*6 = 375
+
 
 ### Problem 4
 Consider the following relation:
